@@ -4,13 +4,15 @@
 
 @section('content')
 <!-- Add Create Tag Button -->
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h4>Tags Management</h4>
-    <a href="{{ route('admin.tag.create') }}" class="btn btn-primary">اضافه کردن تگ</a>
+<div class="d-flex justify-content-between align-items-center my-5">
+    <h4 class="mb-0">مدیریت تگ ها</h4>
+    <x-button :type="'button'" :class="'btn-primary'" :href="route('tags.create')">
+        اضافه کردن تگ
+    </x-button>
 </div>
 
 <!-- Example of using the table component for tags -->
-<x-table :headers="['Tag Name', 'Slug', 'Actions']" :title="'Tags List'" :pagination="$tags->links()">
+<x-table :headers=" ['نام تگ', 'اسلاگ' , 'مدیریت' ]" :title="'Tags List'" :pagination="$tags->links()">
     @foreach ($tags as $tag)
     <tr>
         <td>{{ $tag->name }}</td>
@@ -21,11 +23,11 @@
                     <i class="mdi mdi-dots-vertical"></i>
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{ route('admin.tag.edit', $tag->id) }}">Edit</a>
-                    <form method="POST" action="{{ route('admin.tag.delete', $tag->id) }}" onsubmit="return confirm('Are you sure you want to delete this tag?');">
+                    <a class="dropdown-item" href="{{ route('tags.edit', $tag->id) }}">ویرایش</a>
+                    <form method="POST" action="{{ route('tags.destroy', $tag->id) }}" onsubmit="return confirm('Are you sure you want to delete this tag?');">
                         @csrf
                         @method('delete')
-                        <button class="dropdown-item" type="submit">Delete</button>
+                        <button class="dropdown-item" type="submit">حذف</button>
                     </form>
                 </div>
             </div>

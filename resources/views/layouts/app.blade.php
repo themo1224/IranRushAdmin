@@ -9,7 +9,7 @@
 <body>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
-        <div class="layout-container">
+        <div class="layout-container px-5">
             <!-- Navbar -->
             @include('partials.navbar')
             <!-- / Navbar -->

@@ -481,9 +481,10 @@
 <!-- / Navbar -->
 
 <!-- Layout container -->
-<div class="layout-page">
+<div class="px-3">
     <!-- Content wrapper -->
-    <div class="content-wrapper">
+    <div class="content-wrapper px-3">
+
         <!-- Menu -->
         <aside id="layout-menu" class="layout-menu-horizontal menu-horizontal menu bg-menu-theme flex-grow-0">
             <div class="container-xxl d-flex h-100">
@@ -1519,4 +1520,10 @@
                 </ul>
             </div>
         </aside>
+
         <!-- / Menu -->
+    </div>
+    <!--/ Content wrapper -->
+</div>
+
+<!--/ Layout container -->

@@ -22,8 +22,8 @@
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/node-waves/node-waves.css') }}" />
 
 <!-- Core CSS -->
-<link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core.css') }}" />
-<link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/theme-default.css') }}" class="template-customizer-theme-css" />
+<link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core-dark.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/theme-default-dark.css') }}" class="template-customizer-theme-css" />
 <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
 
 <!-- Vendors CSS -->

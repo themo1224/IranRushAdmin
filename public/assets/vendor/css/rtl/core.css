@@ -86,6 +86,7 @@
 }
 
 body {
+
   margin: 0;
   font-family: var(--bs-body-font-family);
   font-size: var(--bs-body-font-size);
@@ -24281,3 +24282,4 @@ a.bg-vimeo:hover, a.bg-vimeo:focus {
 .footer.bg-lighter hr {
   border-color: rgba(99, 101, 120, 0.0759803922);
 }
+/* rtl.css */

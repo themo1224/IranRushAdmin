@@ -109,3 +109,9 @@
   text-align: center;
   margin-top: 1.25rem;
 }
+
+body {
+  direction: rtl !important;
+  text-align: right !important;
+}
+

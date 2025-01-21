@@ -21,7 +21,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.tags.create');
     }
 
     /**
@@ -29,38 +29,55 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validated = $request->validate([
+            'name' => 'required|string|max:255|unique:tags,name',
+            'slug' => 'required|string|max:255|unique:tags,slug',
+        ], [
+            'name.required' => 'نام تگ الزامی است.',
+            'name.unique' => 'این نام تگ قبلا ثبت شده است.',
+            'slug.required' => 'اسلاگ الزامی است.',
+            'slug.unique' => 'این اسلاگ قبلا ثبت شده است.',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        Tag::create($validated);
+
+        return redirect()->route('tags.index')->with('message', 'Tag created successfully!');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Tag $tag)
     {
-        //
+        return view('tags.edit', compact('tag'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Tag $tag)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255|unique:tags,name,' . $tag->id,
+            'slug' => 'required|string|max:255|unique:tags,slug,' . $tag->id,
+        ], [
+            'name.required' => 'نام تگ الزامی است.',
+            'name.unique' => 'این نام تگ قبلا ثبت شده است.',
+            'slug.required' => 'اسلاگ الزامی است.',
+            'slug.unique' => 'این اسلاگ قبلا ثبت شده است.',
+        ]);
+
+        $tag->update($validated);
+
+        return redirect()->route('tags.index')->with('message', 'Tag updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+        return redirect()->route('tags.index')->with('message', 'Tag deleted successfully!');
     }
 }
