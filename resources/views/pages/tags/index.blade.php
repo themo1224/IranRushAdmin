@@ -24,7 +24,7 @@
                 </button>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{ route('tags.edit', $tag->id) }}">ویرایش</a>
-                    <form method="POST" action="{{ route('tags.destroy', $tag->id) }}" onsubmit="return confirm('Are you sure you want to delete this tag?');">
+                    <form method="POST" action="{{ route('tags.destroy', $tag->id) }}" onsubmit="return confirm('مطمئنی میخوای این تگو حذف کنی ؟');">
                         @csrf
                         @method('delete')
                         <button class="dropdown-item" type="submit">حذف</button>
