@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 
@@ -19,3 +20,4 @@ Route::get('/', function () {
 });
 
 Route::resource('tags', TagController::class);
+Route::resource('categories', CategoryController::class);

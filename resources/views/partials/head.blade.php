@@ -44,3 +44,8 @@
 <script src="{{ asset('assets/vendor/js/template-customizer.js') }}"></script>
 <!--? Config: Mandatory theme config file containing global vars & default theme options -->
 <script src="{{ asset('assets/js/config.js') }}"></script>
+
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/quill/typography.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/quill/katex.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/quill/editor.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/tagify/tagify.css')}}" />

@@ -19,6 +19,9 @@
     </div>
 
     @include('partials.scripts')
+    @yield('scripts') <!-- For injecting custom scripts -->
+    @stack('scripts') <!-- For stacking scripts -->
 </body>
+
 
 </html>
