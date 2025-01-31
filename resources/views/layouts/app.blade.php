@@ -4,6 +4,7 @@
 
 <head>
     @include('partials.head')
+    @yield('css')
 </head>
 
 <body>
@@ -20,7 +21,6 @@
 
     @include('partials.scripts')
     @yield('scripts') <!-- For injecting custom scripts -->
-    @stack('scripts') <!-- For stacking scripts -->
 </body>
 
 
