@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 
@@ -17,9 +19,8 @@ use App\Http\Controllers\TagController;
 |
 */
 
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
 Route::get('/register', [AuthController::class, 'login'])->name('register');
 Route::post('/register', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'login'])->name('logout');
@@ -33,4 +34,9 @@ Route::middleware(['auth'])->group(function () {
 
     // Categories Management
     Route::resource('categories', CategoryController::class);
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+
+    Route::get('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
+    Route::get('/notifications/read-all', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
+    Route::delete('/notifications/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
 });

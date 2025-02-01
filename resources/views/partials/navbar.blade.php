@@ -190,58 +190,61 @@
                 <!-- Quick links -->
 
                 <!-- Notification -->
-                <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-2 me-xl-1">
-                    <a class="nav-link btn btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow"
-                        href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside"
-                        aria-expanded="false">
-                        <i class="mdi mdi-bell-outline mdi-24px"></i>
-                        @if(auth()->check() && auth()->user()->unreadNotifications->count() > 0)
-                        <span class="position-absolute top-0 start-50 translate-middle-y badge badge-dot bg-danger mt-2 border"></span>
+<li class="nav-item dropdown-notifications navbar-dropdown dropdown me-2 me-xl-1" dir="rtl">
+    <a class="nav-link btn btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow"
+        href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside"
+        aria-expanded="false">
+        <i class="mdi mdi-bell-outline mdi-24px"></i>
+        @if(auth()->check() && auth()->user()->unreadNotifications->count() > 0)
+            <span class="position-absolute top-0 start-50 translate-middle-y badge badge-dot bg-danger mt-2 border"></span>
+        @endif
+    </a>
 
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end py-0">
-                        <li class="dropdown-menu-header border-bottom">
-                            <div class="dropdown-header d-flex align-items-center py-3">
-                                <h6 class="mb-0 me-auto">Notifications</h6>
-                                <span class="badge rounded-pill bg-label-primary">{{ auth()->user()->unreadNotifications->count() }} New</span>
+    <ul class="dropdown-menu dropdown-menu-end py-0">
+        <li class="dropdown-menu-header border-bottom">
+            <div class="dropdown-header d-flex align-items-center py-3">
+                <h6 class="mb-0 me-auto">اعلان‌ها</h6>
+                <span class="badge rounded-pill bg-label-primary">{{ auth()->user()->unreadNotifications->count() }} جدید</span>
+            </div>
+        </li>
+
+        <li class="dropdown-notifications-list scrollable-container">
+            <ul class="list-group list-group-flush">
+                @forelse(auth()->user()->unreadNotifications as $notification)
+                <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                    <div class="d-flex flex-column">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-shrink-0">
+                                <div class="avatar me-1">
+                                    <span class="avatar-initial rounded-circle bg-label-success">
+                                        <i class="mdi mdi-bell-outline"></i>
+                                    </span>
+                                </div>
                             </div>
-                        </li>
-                        <li class="dropdown-notifications-list scrollable-container">
-                            <ul class="list-group list-group-flush">
-                                @forelse(auth()->user()->unreadNotifications as $notification)
-                                <li class="list-group-item list-group-item-action dropdown-notifications-item">
-                                    <div class="d-flex gap-2">
-                                        <div class="flex-shrink-0">
-                                            <div class="avatar me-1">
-                                                <span class="avatar-initial rounded-circle bg-label-success">
-                                                    <i class="mdi mdi-bell-outline"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex flex-column flex-grow-1 overflow-hidden w-px-200">
-                                            <h6 class="mb-1 text-truncate">{{ $notification->data['message'] ?? 'New Notification' }}</h6>
-                                            <small class="text-truncate text-body">
-                                                {{ $notification->created_at->diffForHumans() }}
-                                            </small>
-                                        </div>
-                                        <div class="flex-shrink-0 dropdown-notifications-actions">
-                                            <a href="{{ route('notifications.markAsRead', $notification->id) }}" class="text-muted">Mark as read</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                @empty
-                                <li class="list-group-item text-center">No new notifications</li>
-                                @endforelse
-                            </ul>
-                        </li>
-                        <li class="dropdown-menu-footer border-top p-2">
-                            <a href="{{ route('notifications.index') }}" class="btn btn-primary d-flex justify-content-center">
-                                View all notifications
-                            </a>
-                        </li>
-                    </ul>
-                    @endif
+                            <div class="flex-grow-1 overflow-hidden">
+                                <h6 class="mb-1">{{ $notification->data['message'] ?? 'اعلان جدید' }}</h6>
+                                <small class="text-muted d-block">{{ $notification->created_at->diffForHumans() }}</small>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <a href="{{ route('notifications.markAsRead', $notification->id) }}" class="text-primary">علامت‌گذاری به عنوان خوانده‌شده</a>
+                        </div>
+                    </div>
                 </li>
+                @empty
+                <li class="list-group-item text-center">هیچ اعلان جدیدی وجود ندارد</li>
+                @endforelse
+            </ul>
+        </li>
+
+        <li class="dropdown-menu-footer border-top p-2">
+            <a href="{{ route('notifications.index') }}" class="btn btn-primary d-flex justify-content-center">
+                مشاهده همه اعلان‌ها
+            </a>
+        </li>
+    </ul>
+</li>
+
 
                 <!--/ Notification -->
 
