@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Assets\PhotoController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
@@ -39,4 +40,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
     Route::get('/notifications/read-all', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
     Route::delete('/notifications/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
+
+    Route::resource('assets/photo', PhotoController::class);
+
 });
