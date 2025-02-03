@@ -3,13 +3,47 @@
 @section('title', 'عکس ها')
 
 @section('css')
-    <link rel="stylesheet" href="{{asset('assets/vendor/css/pages/page-auth.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-auth.css') }}" />
 @endsection
 
 @section('content')
+    <div class="container mt-4">
+        <h2 class="text-center mb-4">گالری تصاویر</h2>
 
+        <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+            @forelse($photos as $photo)
+                <div class="col">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="{{ $photo->file_path }}" alt="{{ $photo->name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $photo->name ?? 'بدون عنوان' }}</h5>
+                            <p class="card-text">
+                                {{ $photo->description ? Str::limit($photo->description, 100) : 'بدون توضیح' }}
+                            </p>
+                            <p class="text-muted"><small>آپلود شده توسط: {{ $photo->user->name ?? 'ناشناس' }}</small></p>
+                            <p class="text-muted"><small>ابعاد: {{ $photo->width }}x{{ $photo->height }}</small></p>
+                            <p class="text-muted"><small>قیمت: {{ number_format($photo->price, 0) }} تومان</small></p>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <div class="col-12 text-center">
+                    <h5 class="text-muted">هیچ عکسی برای نمایش وجود ندارد.</h5>
+                </div>
+            @endforelse
+        </div>
+        <!-- Pagination -->
+ <nav class="mt-2">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        {{ $photos->links() }}
+                    </li>
+                </ul>
+            </nav>
+
+    </div>
 @endsection
 
 @section('scripts')
-    <script src="{{asset('assets/js/pages-auth.js')}}"></script>
+    <script src="{{ asset('assets/js/pages-auth.js') }}"></script>
 @endsection

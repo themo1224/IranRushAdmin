@@ -197,7 +197,7 @@
         <i class="mdi mdi-bell-outline mdi-24px"></i>
         @if(auth()->check() && auth()->user()->unreadNotifications->count() > 0)
             <span class="position-absolute top-0 start-50 translate-middle-y badge badge-dot bg-danger mt-2 border"></span>
-        @endif
+
     </a>
 
     <ul class="dropdown-menu dropdown-menu-end py-0">
@@ -247,7 +247,7 @@
 
 
                 <!--/ Notification -->
-
+        @endif
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"

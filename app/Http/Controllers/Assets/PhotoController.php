@@ -13,8 +13,8 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        $photo= Photo::with('user')->get();
-        return view('pages.assets.photos.index', compact('photo'));
+        $photos = Photo::with('user')->latest()->paginate(5); // Fetch photos sorted by latest
+        return view('pages.assets.photos.index', compact('photos'));
     }
 
     /**

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Photo extends Model
 {
     use HasFactory;
+
+    // Define relationship with User
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
