@@ -23,6 +23,11 @@
                             <p class="text-muted"><small>آپلود شده توسط: {{ $photo->user->name ?? 'ناشناس' }}</small></p>
                             <p class="text-muted"><small>ابعاد: {{ $photo->width }}x{{ $photo->height }}</small></p>
                             <p class="text-muted"><small>قیمت: {{ number_format($photo->price, 0) }} تومان</small></p>
+                            <div class="d-flex justify-content-between align-items-center my-5">
+                                <x-button :type="'button'" :class="'btn-primary'" :href="route('photo.show', ['photo' => $photo->id])">
+                                    دیدن عکس
+                                </x-button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -33,13 +38,13 @@
             @endforelse
         </div>
         <!-- Pagination -->
- <nav class="mt-2">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item">
-                        {{ $photos->links() }}
-                    </li>
-                </ul>
-            </nav>
+        <nav class="mt-2">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    {{ $photos->links() }}
+                </li>
+            </ul>
+        </nav>
 
     </div>
 @endsection
