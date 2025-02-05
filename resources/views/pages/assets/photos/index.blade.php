@@ -9,6 +9,7 @@
 @section('content')
     <div class="container mt-4">
         <h2 class="text-center mb-4">گالری تصاویر</h2>
+    <x-alert />
 
         <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
             @forelse($photos as $photo)

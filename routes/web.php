@@ -42,5 +42,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/notifications/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
 
     Route::resource('assets/photo', PhotoController::class);
+    Route::patch('photo/{photo}/approve', [PhotoController::class, 'approve'])->name('photo.approve');
+Route::patch('photo/{photo}/reject', [PhotoController::class, 'reject'])->name('photo.reject');
+
 
 });

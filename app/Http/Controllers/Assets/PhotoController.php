@@ -36,9 +36,28 @@ class PhotoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $photo = Photo::with('user')->findOrFail($id);
+        return view('pages.assets.photos.show', compact('photo'));
+    }
+
+    public function approve($id)
+    {
+        $photo = Photo::findOrFail($id);
+        $photo->status = 'approved';
+        $photo->save();
+
+        return redirect()->route('photo.index')->with('success', 'عکس با موفقیت تایید شد.');
+    }
+
+    public function reject($id)
+    {
+        $photo = Photo::findOrFail($id);
+        $photo->status = 'rejected';
+        $photo->save();
+
+        return redirect()->route('photo.index')->with('error', 'عکس رد شد.');
     }
 
     /**
