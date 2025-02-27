@@ -17,21 +17,6 @@ class PhotoController extends Controller
         return view('pages.assets.photos.index', compact('photos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -45,7 +30,7 @@ class PhotoController extends Controller
     public function approve($id)
     {
         $photo = Photo::findOrFail($id);
-        $photo->status = 'approved';
+        $photo->status = 'تایید شده';
         $photo->save();
 
         return redirect()->route('photo.index')->with('success', 'عکس با موفقیت تایید شد.');
@@ -54,7 +39,7 @@ class PhotoController extends Controller
     public function reject($id)
     {
         $photo = Photo::findOrFail($id);
-        $photo->status = 'rejected';
+        $photo->status = 'رد شده';
         $photo->save();
 
         return redirect()->route('photo.index')->with('error', 'عکس رد شد.');

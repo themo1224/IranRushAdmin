@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\Tutorial\TutorialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,8 +43,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/notifications/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
 
     Route::resource('assets/photo', PhotoController::class);
+    Route::resource('tutorials', TutorialController::class);
     Route::patch('photo/{photo}/approve', [PhotoController::class, 'approve'])->name('photo.approve');
-Route::patch('photo/{photo}/reject', [PhotoController::class, 'reject'])->name('photo.reject');
-
-
+    Route::patch('photo/{photo}/reject', [PhotoController::class, 'reject'])->name('photo.reject');
 });
