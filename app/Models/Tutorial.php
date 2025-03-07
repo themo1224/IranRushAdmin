@@ -20,7 +20,7 @@ class Tutorial extends Model
         'canonical_url', 
         'indexable', 
         'author_id', 
-        'image_id'
+        'media_id'
     ];
     
     public function  user(){

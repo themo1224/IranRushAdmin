@@ -3,16 +3,29 @@
 namespace App\Http\Controllers\Tutorial;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Tutorials\StoreRequest;
+use App\Repositories\TutorialRepositoryInterface;
+use App\Services\ImageService;
 use Illuminate\Http\Request;
 
 class TutorialController extends Controller
 {
+    protected $tutorialRepo;
+    protected $image;
     /**
      * Display a listing of the resource.
      */
+
+     public function __construct(TutorialRepositoryInterface $tutorialRepo , ImageService $image)
+     {
+        $this->tutorialRepo= $tutorialRepo;
+        $this->image= $image;
+     }
+
     public function index()
     {
-        
+        $tutorials= $this->tutorialRepo->all();
+        return view('pages.tutorials.index', compact('tutorials'));
     }
 
     /**
@@ -20,7 +33,8 @@ class TutorialController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.tutorials.create');
+
     }
 
     /**
@@ -28,7 +42,15 @@ class TutorialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $imageId= $this->image->uploadImage($request->file('image'), 'tutorials');
+        dd($imageId);
+        $data = $request->all();
+
+        $data['image_id']= $imageId;
+        $data['author_id'] = auth()->id(); // Get authenticated user ID
+
+        $this->tutorialRepo->create($data);
+        return redirect()->route('tutorials.store');
     }
 
     /**
@@ -36,7 +58,9 @@ class TutorialController extends Controller
      */
     public function show(string $id)
     {
-        //
+
+        $tutorial= $this->tutorialRepo->find($id);
+
     }
 
     /**
@@ -44,7 +68,8 @@ class TutorialController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $tutorial = $this->tutorialRepo->find($id);
+        return view('admin.tutorials.edit', compact('tutorial'));
     }
 
     /**
@@ -52,7 +77,9 @@ class TutorialController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->all();
+        $this->tutorialRepo->update($id, $data);
+        return redirect()->route('admin.tutorials.index');
     }
 
     /**
@@ -60,6 +87,7 @@ class TutorialController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $this->tutorialRepo->delete($id);
+        return redirect()->route('admin.tutorials.index');
     }
 }

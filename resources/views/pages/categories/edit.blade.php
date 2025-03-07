@@ -60,14 +60,14 @@
         </div>
 
         <!-- Meta Keywords -->
-        <div class="form-floating form-floating-outline mb-4">
-            <input id="TagifyMetaKeywords" class="form-control @error('meta_keywords') is-invalid @enderror" name="meta_keywords"
-                value="{{ old('meta_keywords', $category->meta_keywords) }}">
-            <label for="TagifyMetaKeywords">کلمات کلیدی</label>
-            @error('meta_keywords')
-            <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
+            <div class="form-floating form-floating-outline mb-4">
+                <input id="TagifyMetaKeywords" class="form-control @error('meta_keywords') is-invalid @enderror" name="meta_keywords"
+                    value="{{ old('meta_keywords', $category->meta_keywords) }}">
+                <label for="TagifyMetaKeywords">کلمات کلیدی</label>
+                @error('meta_keywords')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
 
         <!-- Submit Button -->
         <div class="d-flex justify-content-center">
