@@ -8,7 +8,7 @@ class TutorialRepository implements TutorialRepositoryInterface
 {
     public function all()
     {
-        return Tutorial::all();
+        return Tutorial::with('media')->get();
     }
 
     public function find($id)

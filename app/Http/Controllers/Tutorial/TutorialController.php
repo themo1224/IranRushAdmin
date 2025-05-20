@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Tutorial;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Tutorials\StoreRequest;
+use App\Models\Tutorial;
 use App\Repositories\TutorialRepositoryInterface;
 use App\Services\ImageService;
 use Illuminate\Http\Request;
@@ -34,7 +35,6 @@ class TutorialController extends Controller
     public function create()
     {
         return view('pages.tutorials.create');
-
     }
 
     /**
@@ -43,10 +43,9 @@ class TutorialController extends Controller
     public function store(Request $request)
     {
         $imageId= $this->image->uploadImage($request->file('image'), 'tutorials');
-        dd($imageId);
         $data = $request->all();
 
-        $data['image_id']= $imageId;
+        $data['image_id']= $imageId->id;
         $data['author_id'] = auth()->id(); // Get authenticated user ID
 
         $this->tutorialRepo->create($data);
@@ -56,11 +55,12 @@ class TutorialController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Tutorial $tutorial)
     {
-
-        $tutorial= $this->tutorialRepo->find($id);
-
+        // Optional: Get related tutorials
+        $relatedTutorials = Tutorial::get();
+    
+        return view('pages.tutorials.show', compact('tutorial', 'relatedTutorials'));
     }
 
     /**

@@ -80,23 +80,14 @@
                             <input class="form-check-input" type="checkbox" id="remember-me" name="remember" />
                             <label class="form-check-label" for="remember-me"> مرا به خاطر بسپار </label>
                         </div>
-                        <a href="#" class="float-end mb-1">
+                        {{-- <a href="#" class="float-end mb-1">
                             <span>رمز عبور خود را فراموش کرده اید؟</span>
-                        </a>
+                        </a> --}}
                     </div>
                     <button class="btn btn-primary d-grid w-100" type="submit">ورود</button>
                 </form>
 
-                <p class="text-center mt-2">
-                    <span>حساب کاربری ندارید؟</span>
-                    <a href="{{ route('register') }}">
-                        <span>ثبت نام کنید</span>
-                    </a>
-                </p>
-
-                <div class="divider my-4">
-                    <div class="divider-text">یا</div>
-                </div>
+               
 
                
             </div>

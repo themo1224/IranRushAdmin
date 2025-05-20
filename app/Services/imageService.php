@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Media;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -19,7 +20,14 @@ class ImageService
         // Store image in the specified folder
         $path = $file->storeAs($folder, $filename, 'public');
         
+        $media = Media::create([
+            'file_name' => $filename,
+            'file_path' => $path,
+            'mime_type' => $file->getMimeType(),
+            'size' => $file->getSize(),
+        ]);
 
-        return $path; // Return stored file path
+        return $media; // Return the media object
+
     }
 }

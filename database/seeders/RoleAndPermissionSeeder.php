@@ -43,7 +43,7 @@ class RoleAndPermissionSeeder extends Seeder
         $admin = User::create([
             'name' => 'Admin User',
             'email' => 'admin@iranrush.com',
-            'phone_number' => '09114708911',
+            'phone_number' => '09114708919',
             'password' => bcrypt('password'), // Use a secure password in production
         ]);
 
