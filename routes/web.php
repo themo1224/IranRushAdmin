@@ -8,8 +8,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\Tutorial\TutorialController;
-use Modules\Email\App\Http\Controllers\TemplateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +48,6 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('photo/{photo}/approve', [PhotoController::class, 'approve'])->name('photo.approve');
     Route::patch('photo/{photo}/reject', [PhotoController::class, 'reject'])->name('photo.reject');
 
-    Route::resource('templates', TemplateController::class);
+    Route::resource('templates', TemplateController::class)->names('templates');
 
 });
